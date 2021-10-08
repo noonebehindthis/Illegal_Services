@@ -1,0 +1,16 @@
+DirectoryIndex index.html
+
+AddDefaultCharset UTF-8
+
+DefaultLanguage en
+
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+ErrorDocument 400 https://illegal-services.rf.gd/
+ErrorDocument 401 https://illegal-services.rf.gd/
+ErrorDocument 403 https://illegal-services.rf.gd/
+ErrorDocument 404 https://illegal-services.rf.gd/
+ErrorDocument 500 https://illegal-services.rf.gd/
+ErrorDocument 503 https://illegal-services.rf.gd/

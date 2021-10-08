@@ -1,0 +1,125 @@
+body, html {
+    background-color: #1C1C1C;
+    font-family: Arial, Helvetica, sans-serif;
+    word-wrap: break-word;
+    width: auto;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a img {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin: -8px auto 4px;
+    padding: 12px;
+}
+
+footer {
+    text-align: center;
+    border-top: thin solid grey;
+    font-size: 16px;
+    color: grey;
+    padding: 15px;
+    padding-bottom: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline solid 1px;
+    color: #7200FF;
+}
+
+.navbar {
+    text-align: center;
+    width: auto;
+    padding: 10px;
+    border: 1px solid #7200FF;
+    background-color: #555;
+}
+
+.navbar a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}
+
+.navbar a:hover {
+    background-color: #0C0C0C;
+    border: 1px solid #7200FF;
+}
+
+.active {
+    background-color: #13A10E;
+}
+
+.dropbtn {
+    position: relative;
+    background-color: #13A10E;
+    color: white;
+    line-height: 0;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.scaled {
+    max-width: 100%;
+    width: 1000px;
+}
+
+.text {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+
+@media screen and (max-width: 1000px) {
+    .navbar a {
+        display: inline-block;
+    }
+    footer {
+        font-size: 15px;
+    }
+}
