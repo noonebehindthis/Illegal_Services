@@ -115,6 +115,19 @@ nav a:hover {
     color: white;
 }
 
+.btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.btn:hover {
+    background-color: RoyalBlue;
+}
+
 @media screen and (max-width: 1000px) {
     .navbar a {
         display: inline-block;
