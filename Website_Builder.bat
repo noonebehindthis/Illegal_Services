@@ -54,7 +54,7 @@ for /f "tokens=1,2*" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookm
                 ) else if "%%A"=="LINK" (
                     set "href_link=%%F"
                     >>"!href_path!/index.html" (
-                        echo         ^<a href="!href_link!"^>^<i class="fa fa-globe"^>^</i^> !name!^</a^>
+                        echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name!^</a^>
                     ) || (
                         echo ERROR ^(LINK^): "!href_path!/index.html"
                         pause
