@@ -129,13 +129,14 @@ nav a:hover {
 }
 
 .pathbar {
-    border: 4px solid #7200FF;
-    font-size: 20px;
-    padding: 6px;
-    text-align: left;
     margin-left: auto;
     margin-right: auto;
     width: max-content;
+    text-align: left;
+    font-size: 20px;
+    padding: 6px;
+    border: 4px solid #7200FF;
+    color: white;
 }
 
 .pathbar a:hover {
@@ -151,11 +152,10 @@ nav a:hover {
 
 .vertical-menu a {
     background-color: #35393B;
-    min-width: 285px;
-    color: black;
+    color: white;
     display: block;
+    min-width: 285px;
     padding: 12px;
-    text-decoration: none;
 }
 
 .vertical-menu a:hover {
