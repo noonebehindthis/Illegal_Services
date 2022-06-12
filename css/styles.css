@@ -128,6 +128,40 @@ nav a:hover {
     background-color: RoyalBlue;
 }
 
+.pathbar {
+    border: 4px solid #7200FF;
+    font-size: 20px;
+    padding: 6px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
+}
+
+.pathbar a:hover {
+    color: blue;
+}
+
+.vertical-menu {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
+}
+
+.vertical-menu a {
+    background-color: #35393B;
+    min-width: 285px;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    background-color: #535757;
+}
+
 @media screen and (max-width: 1000px) {
     .navbar a {
         display: inline-block;
