@@ -149,10 +149,10 @@ exit /b
     echo     ^<br^>
     echo:
     echo     ^<footer^>
-    echo         ^<a href="https://illegal-services.github.io/Illegal_Services/"^>^<img src="/svgs/internet.svg" title="https://illegal-services.github.io/Illegal_Services/" target="_blank"^>^</a^>
-    echo         ^<a href="https://github.com/Illegal-Services/Illegal_Services"^>^<img src="/svgs/github.svg" title="https://github.com/Illegal-Services/Illegal_Services" target="_blank"^>^</a^>
-    echo         ^<a href="https://t.me/illegal_services_forum"^>^<img src="/svgs/telegram.svg" title="https://t.me/illegal_services_forum" target="_blank"^>^</a^>
-    echo         ^<a href="https://t.me/illegal_services"^>^<img src="/svgs/telegram.svg" title="https://t.me/illegal_services" target="_blank"^>^</a^>
+    echo         ^<a href="https://illegal-services.github.io/Illegal_Services/"^>^<img src="/Illegal_Services/svgs/internet.svg" title="https://illegal-services.github.io/Illegal_Services/" target="_blank"^>^</a^>
+    echo         ^<a href="https://github.com/Illegal-Services/Illegal_Services"^>^<img src="/Illegal_Services/svgs/github.svg" title="https://github.com/Illegal-Services/Illegal_Services" target="_blank"^>^</a^>
+    echo         ^<a href="https://t.me/illegal_services_forum"^>^<img src="/Illegal_Services/svgs/telegram.svg" title="https://t.me/illegal_services_forum" target="_blank"^>^</a^>
+    echo         ^<a href="https://t.me/illegal_services"^>^<img src="/Illegal_Services/svgs/telegram.svg" title="https://t.me/illegal_services" target="_blank"^>^</a^>
     echo         ^</br^>
     echo         © 2020-2022 IB_U_Z_Z_A_R_Dl. All rights reserved.
     echo     ^</footer^>
