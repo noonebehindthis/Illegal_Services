@@ -111,21 +111,21 @@ if defined @display_path (
     echo     ^<meta name="keywords" content="Illegal, Services, Bookmarks, website"^>
     echo     ^<meta name="author" content="IB_U_Z_Z_A_R_Dl"^>
     echo     ^<title^>IS Bookmarks - Illegal Services^</title^>
-    echo     ^<link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon"^>
-    echo     ^<link rel="icon" href="/icons/favicon.ico" type="image/x-icon"^>
-    echo     ^<link rel="stylesheet" href="/css/styles.css"^>
+    echo     ^<link rel="shortcut icon" href="/Illegal_Services/icons/favicon.ico" type="image/x-icon"^>
+    echo     ^<link rel="icon" href="/Illegal_Services/icons/favicon.ico" type="image/x-icon"^>
+    echo     ^<link rel="stylesheet" href="/Illegal_Services/css/styles.css"^>
     echo     ^<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"^>
     echo ^</head^>
     echo:
     echo ^<body^>
     echo     ^<nav^>
     echo         ^<div class="navbar"^>
-    echo             ^<a href="/index.html"^>^<i class="fa fa-home"^>^</i^>Home^</a^>
-    echo             ^<a href="/tutorial.html"^>^<i class="fa fa-life-ring"^>^</i^> Tutorial^</a^>
-    echo             ^<a href="/faq.html"^>^<i class="fa fa-question-circle"^>^</i^> FAQ^</a^>
-    echo             ^<a href="/downloads.html"^>^<i class="fa fa-cloud-download"^>^</i^> Downloads^</a^>
-    echo             ^<a href="/Bookmarks%%20Toolbar/Illegal%%20Services/index.html" class="active"^>^<i class="fa fa-bookmark-o"^>^</i^>^<u^> IS Bookmarks^</u^>^</a^>
-    echo             ^<a href="/IS.bookmarks.html" target="_blank"^>^<i class="fa fa-bookmark-o"^>^</i^>^</i^> IS.bookmarks.html^</a^>
+    echo             ^<a href="/Illegal_Services/index.html"^>^<i class="fa fa-home"^>^</i^>Home^</a^>
+    echo             ^<a href="/Illegal_Services/tutorial.html"^>^<i class="fa fa-life-ring"^>^</i^> Tutorial^</a^>
+    echo             ^<a href="/Illegal_Services/faq.html"^>^<i class="fa fa-question-circle"^>^</i^> FAQ^</a^>
+    echo             ^<a href="/Illegal_Services/downloads.html"^>^<i class="fa fa-cloud-download"^>^</i^> Downloads^</a^>
+    echo             ^<a href="/Illegal_Services/Bookmarks%%20Toolbar/Illegal%%20Services/index.html" class="active"^>^<i class="fa fa-bookmark-o"^>^</i^>^<u^> IS Bookmarks^</u^>^</a^>
+    echo             ^<a href="/Illegal_Services/IS.bookmarks.html" target="_blank"^>^<i class="fa fa-bookmark-o"^>^</i^>^</i^> IS.bookmarks.html^</a^>
     echo         ^</div^>
     echo     ^</nav^>
     echo     ^<br^>
