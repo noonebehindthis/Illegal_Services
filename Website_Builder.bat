@@ -63,6 +63,15 @@ for /f "tokens=1,2*" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookm
                         exit /b 0
                     )
                     echo "[%%A] [!href_path!] [!name!] [!href_link!]"
+                ) else if "%%A"=="HR" (
+                    >>"!href_path!/index.html" (
+                        echo         ^<HR^>
+                    ) || (
+                        echo ERROR ^(HR^): "!href_path!/index.html"
+                        pause
+                        exit /b 0
+                    )
+                    echo echo "[%%A] [!href_path!]"
                 )
             )
         )
