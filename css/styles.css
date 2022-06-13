@@ -162,6 +162,15 @@ nav a:hover {
     background-color: #535757;
 }
 
+.counter {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
+    background: rgb(255, 192, 203);
+    color: black
+}
+
 @media screen and (max-width: 1000px) {
     .navbar a {
         display: inline-block;
