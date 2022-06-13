@@ -55,12 +55,22 @@ for /f "tokens=1,2*" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookm
                 ) else if "%%A"=="LINK" (
                     set /a counter_links+=1
                     set "href_link=%%F"
-                    >>"!href_path!/index.html" (
-                        echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name!^</a^>
-                    ) || (
-                        echo ERROR ^(LINK^): "!href_path!/index.html"
-                        pause
-                        exit /b 0
+                    if "!name:~-14!"==" | (untrusted)" (
+                        >>"!href_path!/index.html" (
+                            echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name:~0,-14!^<font color="red"^>!name:~-14!^</font^>^</a^>
+                        ) || (
+                            echo ERROR ^(LINK^): "!href_path!/index.html"
+                            pause
+                            exit /b 0
+                        )
+                    ) else (
+                        >>"!href_path!/index.html" (
+                            echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name!^</a^>
+                        ) || (
+                            echo ERROR ^(LINK^): "!href_path!/index.html"
+                            pause
+                            exit /b 0
+                        )
                     )
                     echo "[%%A] [!href_path!] [!name!] [!href_link!]"
                 ) else if "%%A"=="HR" (
