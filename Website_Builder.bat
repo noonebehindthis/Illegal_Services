@@ -29,12 +29,12 @@ for /f "tokens=1,2*" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookm
                 set "href_path=%%D"
                 set "href_name=%%E"
                 set "name=%%E"
-                set "href_path=!href_path:?=z!"
-                set "href_path=!href_path:\/=z!"
-                set "href_path=!href_path:\\=z!"
-                set "href_name=!href_name:?=z!"
-                set "href_name=!href_name:\/=z!"
-                set "href_name=!href_name:\\=z!"
+                set "href_path=!href_path:?=U+003F!"
+                set "href_path=!href_path:\/=U+002F!"
+                set "href_path=!href_path:\\=U+005C!"
+                set "href_name=!href_name:?=U+003F!"
+                set "href_name=!href_name:\/=U+002F!"
+                set "href_name=!href_name:\\=U+005C!"
                 set "name=!name:\/=/!"
                 set "name=!name:\\=\!"
                 set "name=!name:&#39;='!"
@@ -121,7 +121,11 @@ for %%A in (!tmp_path_href_path!) do (
     ) else (
         set "path_href_path=%%~A"
     )
-    set @display_path=!@display_path!^<a href^="/Illegal_Services/!path_href_path!/index.html"^>%%~A^</a^> ^>!sp!
+    set "data=%%~A"
+    set "data=!data:U+003F=?!"
+    set "data=!data:U+002F=/!"
+    set "data=!data:U+005C=\!"
+    set @display_path=!@display_path!^<a href^="/Illegal_Services/!path_href_path!/index.html"^>!data!^</a^> ^>!sp!
 )
 if defined @display_path (
     set "@display_path=!@display_path!index.html"
