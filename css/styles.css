@@ -178,6 +178,23 @@ hr {
     color: black
 }
 
+.javascript-disabled {
+    text-align: center;
+    width: 400px;
+    margin: 10px auto 10px auto;
+    padding: 15px;
+    color: black;
+    border: 1px solid #ccc;
+    background: #eee;
+    font-style: italic;
+}
+
+.javascript-disabled img {
+    float: left;
+    width: 55px;
+    height: 50px;
+}
+
 @media screen and (max-width: 1000px) {
     .navbar a {
         display: inline-block;

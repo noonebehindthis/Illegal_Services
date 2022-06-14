@@ -10,8 +10,10 @@ if defined href_path (
 )
 set "sp= "
 set /a counter_links=0
-if exist "Bookmarks Toolbar\" (
-    rd /s /q "Bookmarks Toolbar"
+for %%A in ("Bookmarks Toolbar" js) do (
+    if exist "%%~A\" (
+        rd /s /q "%%~A"
+    )
 )
 for /f "tokens=1,2*" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookmarks\bookmarks_parser.py" -e --folders-path "D:\Git\Illegal_Services\IS.bookmarks.html"') do (
     set "data=%%C"
@@ -23,6 +25,10 @@ for /f "tokens=1,2*" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookm
                 if not exist "!href_path!\" (
                     md "!href_path!" && (
                         call :WRITE_HEADER %%B
+                    ) || (
+                        echo ERROR ^(WRITE_href_path_FOLDER^): "!href_path!\"
+                        pause
+                        exit /b 1
                     )
                 )
             ) else (
@@ -49,9 +55,9 @@ for /f "tokens=1,2*" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookm
                     ) || (
                         echo ERROR ^(PATH^): "!href_path!/index.html"
                         pause
-                        exit /b 0
+                        exit /b 1
                     )
-                    echo "[%%A] [!href_path!] [!name!]"
+                    rem echo "[%%A] [!href_path!] [!name!]"
                 ) else if "%%A"=="LINK" (
                     set /a counter_links+=1
                     set "href_link=%%F"
@@ -61,7 +67,7 @@ for /f "tokens=1,2*" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookm
                         ) || (
                             echo ERROR ^(LINK^): "!href_path!/index.html"
                             pause
-                            exit /b 0
+                            exit /b 1
                         )
                     ) else (
                         >>"!href_path!/index.html" (
@@ -69,19 +75,19 @@ for /f "tokens=1,2*" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookm
                         ) || (
                             echo ERROR ^(LINK^): "!href_path!/index.html"
                             pause
-                            exit /b 0
+                            exit /b 1
                         )
                     )
-                    echo "[%%A] [!href_path!] [!name!] [!href_link!]"
+                    rem echo "[%%A] [!href_path!] [!name!] [!href_link!]"
                 ) else if "%%A"=="HR" (
                     >>"!href_path!/index.html" (
                         echo         ^<HR^>
                     ) || (
                         echo ERROR ^(HR^): "!href_path!/index.html"
                         pause
-                        exit /b 0
+                        exit /b 1
                     )
-                    echo echo "[%%A] [!href_path!]"
+                    rem echo echo "[%%A] [!href_path!]"
                 )
             )
         )
@@ -100,6 +106,25 @@ for /f "delims=" %%A in ('2^>nul dir "Bookmarks Toolbar\*index.html" /b /a:-d /s
             call :WRITE_FOOTER
         )
     )
+)
+if not exist "js\" (
+    md "js" || (
+        echo ERROR ^(WRITE_JS_FOLDER^): "js\"
+        pause
+        exit /b 1
+    )
+)
+>"js\counter.js" (
+    echo document.write^(`
+    echo     ^<div class="counter"^>
+    echo         Updated: !current_date!^&nbsp;^&nbsp;^|^&nbsp;^&nbsp;!counter_links! links indexed.
+    echo     ^</div^>
+    echo     ^<br^>
+    echo `^);
+) || (
+    echo ERROR ^(WRITE_JS_COUNTER^): "js\counter.js"
+    pause
+    exit /b 1
 )
 
 popd
@@ -169,7 +194,7 @@ if defined @display_path (
 ) || (
     echo ERROR ^(WRITE_HEADER^): "!href_path!/index.html"
     pause
-    exit /b 0
+    exit /b 1
 )
 exit /b
 
@@ -178,10 +203,14 @@ exit /b
     echo     ^</div^>
     echo     ^<br^>
     echo:
-    echo     ^<div class="counter"^>
-    echo         Updated: 13/06/2022^&nbsp;^&nbsp;^|^&nbsp;^&nbsp;!counter_links! links indexed.
-    echo     ^</div^>
-    echo     ^<br^>
+    echo     ^<script src="/Illegal_Services/js/counter.js"^>^</script^>
+    echo     ^<noscript^>
+    echo         ^<div class="javascript-disabled"^>
+    echo             ^<img src="/Illegal_Services/icons/no_js.png"^>
+    echo             JavaScript disabled in your browser;^<br^>
+    echo             can't display the counter informations.
+    echo         ^</div^>
+    echo     ^</noscript^>
     echo:
     echo     ^<footer^>
     echo         ^<a href="https://illegal-services.github.io/Illegal_Services/"^>^<img src="/Illegal_Services/svgs/internet.svg" title="https://illegal-services.github.io/Illegal_Services/" target="_blank"^>^</a^>
@@ -193,11 +222,12 @@ exit /b
     echo     ^</footer^>
     echo:
     echo ^</body^>
+    echo:
     echo ^</html^>
 ) || (
     echo ERROR ^(WRITE_FOOTER^): "!href_path!/index.html"
     pause
-    exit /b 0
+    exit /b 1
 )
 exit /b
 
