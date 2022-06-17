@@ -30,50 +30,49 @@ for /f "tokens=1,3,5,7,9delims='" %%A in ('python "D:\Téléchargements\Python S
             )
         ) else (
             set "href_path=%%C"
-            set "href_name=%%D"
-            set "name=%%D"
             set "href_path=!href_path:?=U+003F!"
             set "href_path=!href_path:\/=U+002F!"
             set "href_path=!href_path:\\=U+005C!"
-            set "href_name=!href_name:?=U+003F!"
-            set "href_name=!href_name:\/=U+002F!"
-            set "href_name=!href_name:\\=U+005C!"
-            set "name=!name:\/=/!"
-            set "name=!name:\\=\!"
-            set "name=!name:&#39;='!"
             if not exist "!href_path!\" (
                 md "!href_path!" && (
                     call :WRITE_HEADER %%B
                 )
             )
             if "%%A"=="PATH" (
+                set "href_name=%%D"
+                set "name=%%D"
+                set "href_name=!href_name:?=U+003F!"
+                set "href_name=!href_name:\/=U+002F!"
+                set "href_name=!href_name:\\=U+005C!"
+                set "name=!name:\/=/!"
+                set "name=!name:\\=\!"
+                set "name=!name:&#39;='!"
                 >>"!href_path!/index.html" (
                     echo         ^<a href="!href_name!/index.html"^>^<i class="fa fa-folder-o"^>^</i^> !name!^</a^>
                 ) || (
-                    echo ERROR ^(PATH^): "!href_path!/index.html"
+                    echo ERROR ^(PATH^): "!href_path!/index.html" "!name!"
                     pause
                     exit /b 1
                 )
                 rem echo "[%%A] [%%B] [!href_path!] [!name!]"
             ) else if "%%A"=="LINK" (
                 set /a counter_links+=1
-                set "href_link=%%E"
-                if "!name:~-14!"==" | (untrusted)" (
-                    >>"!href_path!/index.html" (
-                        echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name:~0,-14!^<font color="red"^>!name:~-14!^</font^>^</a^>
-                    ) || (
-                        echo ERROR ^(LINK^): "!href_path!/index.html"
-                        pause
-                        exit /b 1
+                set "href_link=%%D"
+                set "name=%%E"
+                if defined name (
+                    set "name=!name:\/=/!"
+                    set "name=!name:\\=\!"
+                    set "name=!name:&#39;='!"
+                    if "!name:~-14!"==" | (untrusted)" (
+                        set "name=!name:~0,-14!<font color="red">!name:~-14!</font>"
                     )
-                ) else (
-                    >>"!href_path!/index.html" (
-                        echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name!^</a^>
-                    ) || (
-                        echo ERROR ^(LINK^): "!href_path!/index.html"
-                        pause
-                        exit /b 1
-                    )
+                )
+                >>"!href_path!/index.html" (
+                    echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name!^</a^>
+                ) || (
+                    echo ERROR ^(LINK^): "!href_path!/index.html" "!name!"
+                    pause
+                    exit /b 1
                 )
                 rem echo "[%%A] [%%B] [!href_path!] [!name!] [!href_link!]"
             ) else if "%%A"=="HR" (
