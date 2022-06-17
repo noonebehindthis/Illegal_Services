@@ -15,80 +15,76 @@ for %%A in ("Bookmarks Toolbar" js) do (
         rd /s /q "%%~A"
     )
 )
-for /f "tokens=1,2*" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookmarks\bookmarks_parser.py" -e --folders-path "D:\Git\Illegal_Services\IS.bookmarks.html"') do (
-    set "data=%%C"
-    if defined data (
-        set "data=!data:"=`!"
-        for /f "tokens=1,3,5delims=`" %%D in ("!data!") do (
-            if "%%B_!href_path!"=="0_" (
-                set "href_path=Bookmarks Toolbar"
-                if not exist "!href_path!\" (
-                    md "!href_path!" && (
-                        call :WRITE_HEADER %%B
-                    ) || (
-                        echo ERROR ^(WRITE_href_path_FOLDER^): "!href_path!\"
-                        pause
-                        exit /b 1
-                    )
+for /f "tokens=1,3,5,7,9delims='" %%A in ('python "D:\Téléchargements\Python Stuff\IS.bookmarks\bookmarks_parser.py" -e --folders-path --spacing-style " " --quoting-style "'" "D:\Git\Illegal_Services\IS.bookmarks.html"') do (
+    if not "%%B"=="" (
+        if "%%A_%%B"=="PATH_0" (
+            set "href_path=Bookmarks Toolbar"
+            if not exist "!href_path!\" (
+                md "!href_path!" && (
+                    call :WRITE_HEADER %%B
+                ) || (
+                    echo ERROR ^(WRITE_href_path_FOLDER^): "!href_path!\"
+                    pause
+                    exit /b 1
                 )
-            ) else (
-                set "href_path=%%D"
-                set "href_name=%%E"
-                set "name=%%E"
-                set "href_path=!href_path:?=U+003F!"
-                set "href_path=!href_path:\/=U+002F!"
-                set "href_path=!href_path:\\=U+005C!"
-                set "href_name=!href_name:?=U+003F!"
-                set "href_name=!href_name:\/=U+002F!"
-                set "href_name=!href_name:\\=U+005C!"
-                set "name=!name:\/=/!"
-                set "name=!name:\\=\!"
-                set "name=!name:&#39;='!"
-                if not exist "!href_path!\" (
-                    md "!href_path!" && (
-                        call :WRITE_HEADER %%B
-                    )
+            )
+        ) else (
+            set "href_path=%%C"
+            set "href_name=%%D"
+            set "name=%%D"
+            set "href_path=!href_path:?=U+003F!"
+            set "href_path=!href_path:\/=U+002F!"
+            set "href_path=!href_path:\\=U+005C!"
+            set "href_name=!href_name:?=U+003F!"
+            set "href_name=!href_name:\/=U+002F!"
+            set "href_name=!href_name:\\=U+005C!"
+            set "name=!name:\/=/!"
+            set "name=!name:\\=\!"
+            set "name=!name:&#39;='!"
+            if not exist "!href_path!\" (
+                md "!href_path!" && (
+                    call :WRITE_HEADER %%B
                 )
-                if "%%A"=="PATH" (
+            )
+            if "%%A"=="PATH" (
+                >>"!href_path!/index.html" (
+                    echo         ^<a href="!href_name!/index.html"^>^<i class="fa fa-folder-o"^>^</i^> !name!^</a^>
+                ) || (
+                    echo ERROR ^(PATH^): "!href_path!/index.html"
+                    pause
+                    exit /b 1
+                )
+                rem echo "[%%A] [%%B] [!href_path!] [!name!]"
+            ) else if "%%A"=="LINK" (
+                set /a counter_links+=1
+                set "href_link=%%E"
+                if "!name:~-14!"==" | (untrusted)" (
                     >>"!href_path!/index.html" (
-                        echo         ^<a href="!href_name!/index.html"^>^<i class="fa fa-folder-o"^>^</i^> !name!^</a^>
+                        echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name:~0,-14!^<font color="red"^>!name:~-14!^</font^>^</a^>
                     ) || (
-                        echo ERROR ^(PATH^): "!href_path!/index.html"
+                        echo ERROR ^(LINK^): "!href_path!/index.html"
                         pause
                         exit /b 1
                     )
-                    rem echo "[%%A] [!href_path!] [!name!]"
-                ) else if "%%A"=="LINK" (
-                    set /a counter_links+=1
-                    set "href_link=%%F"
-                    if "!name:~-14!"==" | (untrusted)" (
-                        >>"!href_path!/index.html" (
-                            echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name:~0,-14!^<font color="red"^>!name:~-14!^</font^>^</a^>
-                        ) || (
-                            echo ERROR ^(LINK^): "!href_path!/index.html"
-                            pause
-                            exit /b 1
-                        )
-                    ) else (
-                        >>"!href_path!/index.html" (
-                            echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name!^</a^>
-                        ) || (
-                            echo ERROR ^(LINK^): "!href_path!/index.html"
-                            pause
-                            exit /b 1
-                        )
-                    )
-                    rem echo "[%%A] [!href_path!] [!name!] [!href_link!]"
-                ) else if "%%A"=="HR" (
+                ) else (
                     >>"!href_path!/index.html" (
-                        echo         ^<HR^>
+                        echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name!^</a^>
                     ) || (
-                        echo ERROR ^(HR^): "!href_path!/index.html"
+                        echo ERROR ^(LINK^): "!href_path!/index.html"
                         pause
                         exit /b 1
                     )
-                    rem echo echo "[%%A] [!href_path!]"
                 )
+                rem echo "[%%A] [%%B] [!href_path!] [!name!] [!href_link!]"
+            ) else if "%%A"=="HR" (
+                >>"!href_path!/index.html" (
+                    echo         ^<HR^>
+                ) || (
+                    echo ERROR ^(HR^): "!href_path!/index.html"
+                    pause
+                    exit /b 1
+                )
+                rem echo echo "[%%A] [%%B] [!href_path!]"
             )
         )
     )
