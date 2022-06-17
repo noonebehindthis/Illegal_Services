@@ -84,7 +84,7 @@ for /f "tokens=1,3,5,7,9delims='" %%A in ('python "D:\Téléchargements\Python S
                     pause
                     exit /b 1
                 )
-                rem echo echo "[%%A] [%%B] [!href_path!]"
+                rem echo "[%%A] [%%B] [!href_path!]"
             )
         )
     )
