@@ -23,7 +23,7 @@ for /f "tokens=1,3,5,7,9delims='" %%A in ('python "D:\Téléchargements\Python S
                 md "!href_path!" && (
                     call :WRITE_HEADER %%B
                 ) || (
-                    echo ERROR ^(WRITE_href_path_FOLDER^): "!href_path!\"
+                    echo ERROR ^(WRITE_FOLDER_PATH^): "!href_path!\"
                     pause
                     exit /b 1
                 )
@@ -36,21 +36,23 @@ for /f "tokens=1,3,5,7,9delims='" %%A in ('python "D:\Téléchargements\Python S
             if not exist "!href_path!\" (
                 md "!href_path!" && (
                     call :WRITE_HEADER %%B
+                ) || (
+                    echo ERROR ^(WRITE_FOLDER_PATH^): "!href_path!\"
+                    pause
+                    exit /b 1
                 )
             )
             if "%%A"=="PATH" (
                 set "href_name=%%D"
                 set "name=%%D"
                 set "href_name=!href_name:?=U+003F!"
-                set "href_name=!href_name:\/=U+002F!"
-                set "href_name=!href_name:\\=U+005C!"
-                set "name=!name:\/=/!"
-                set "name=!name:\\=\!"
+                set "href_name=!href_name:/=U+002F!"
+                set "href_name=!href_name:\=U+005C!"
                 set "name=!name:&#39;='!"
                 >>"!href_path!/index.html" (
                     echo         ^<a href="!href_name!/index.html"^>^<i class="fa fa-folder-o"^>^</i^> !name!^</a^>
                 ) || (
-                    echo ERROR ^(PATH^): "!href_path!/index.html" "!name!"
+                    echo ERROR ^(WRITE_HREF_FOLDER^): "!href_path!/index.html" "!name!"
                     pause
                     exit /b 1
                 )
@@ -60,8 +62,6 @@ for /f "tokens=1,3,5,7,9delims='" %%A in ('python "D:\Téléchargements\Python S
                 set "href_link=%%D"
                 set "name=%%E"
                 if defined name (
-                    set "name=!name:\/=/!"
-                    set "name=!name:\\=\!"
                     set "name=!name:&#39;='!"
                     if "!name:~-14!"==" | (untrusted)" (
                         set "name=!name:~0,-14!<font color="red">!name:~-14!</font>"
@@ -70,7 +70,7 @@ for /f "tokens=1,3,5,7,9delims='" %%A in ('python "D:\Téléchargements\Python S
                 >>"!href_path!/index.html" (
                     echo         ^<a href="!href_link!" target="_blank"^>^<i class="fa fa-globe"^>^</i^> !name!^</a^>
                 ) || (
-                    echo ERROR ^(LINK^): "!href_path!/index.html" "!name!"
+                    echo ERROR ^(WRITE_HREF_LINK^): "!href_path!/index.html" "!name!"
                     pause
                     exit /b 1
                 )
@@ -79,7 +79,7 @@ for /f "tokens=1,3,5,7,9delims='" %%A in ('python "D:\Téléchargements\Python S
                 >>"!href_path!/index.html" (
                     echo         ^<HR^>
                 ) || (
-                    echo ERROR ^(HR^): "!href_path!/index.html"
+                    echo ERROR ^(WRITE_HREF_HR^): "!href_path!/index.html"
                     pause
                     exit /b 1
                 )
